@@ -81,8 +81,8 @@
     <ClInclude Include="CPP\7zip\Compress\RangeCoder.h" />
     <ClInclude Include="CPP\7zip\Compress\RangeCoderBit.h" />
     <ClInclude Include="CPP\7zip\Compress\StdAfx.h" />
+    <ClInclude Include="CPP\7zip\UI\Client7z\Client7z.h" />
     <ClInclude Include="CPP\7zip\UI\Common\ArchiveCommandLine.h" />
-    <ClInclude Include="CPP\7zip\UI\Common\ArchiveExtractCallback.h" />
     <ClInclude Include="CPP\7zip\UI\Common\ArchiveName.h" />
     <ClInclude Include="CPP\7zip\UI\Common\ArchiveOpenCallback.h" />
     <ClInclude Include="CPP\7zip\UI\Common\Bench.h" />
@@ -94,7 +94,6 @@
     <ClInclude Include="CPP\7zip\UI\Common\ExtractingFilePath.h" />
     <ClInclude Include="CPP\7zip\UI\Common\ExtractMode.h" />
     <ClInclude Include="CPP\7zip\UI\Common\IFileExtractCallback.h" />
-    <ClInclude Include="CPP\7zip\UI\Common\LoadCodecs.h" />
     <ClInclude Include="CPP\7zip\UI\Common\OpenArchive.h" />
     <ClInclude Include="CPP\7zip\UI\Common\Property.h" />
     <ClInclude Include="CPP\7zip\UI\Common\PropIDUtils.h" />
@@ -104,7 +103,6 @@
     <ClInclude Include="CPP\7zip\UI\Common\TempFiles.h" />
     <ClInclude Include="CPP\7zip\UI\Common\Update.h" />
     <ClInclude Include="CPP\7zip\UI\Common\UpdateAction.h" />
-    <ClInclude Include="CPP\7zip\UI\Common\UpdateCallback.h" />
     <ClInclude Include="CPP\7zip\UI\Common\UpdatePair.h" />
     <ClInclude Include="CPP\7zip\UI\Common\UpdateProduce.h" />
     <ClInclude Include="CPP\7zip\UI\Common\WorkDir.h" />
@@ -183,7 +181,6 @@
     <ClCompile Include="CPP\7zip\Archive\Common\MultiStream.cpp" />
     <ClCompile Include="CPP\7zip\Archive\Common\OutStreamWithCRC.cpp" />
     <ClCompile Include="CPP\7zip\Archive\Common\ParseProperties.cpp" />
-    <ClCompile Include="CPP\7zip\Archive\DllExports2.cpp" />
     <ClCompile Include="CPP\7zip\Archive\LzmaHandler.cpp" />
     <ClCompile Include="CPP\7zip\Archive\SplitHandler.cpp" />
     <ClCompile Include="CPP\7zip\Archive\XzHandler.cpp" />
@@ -226,8 +223,8 @@
     <ClCompile Include="CPP\7zip\Compress\PpmdDecoder.cpp" />
     <ClCompile Include="CPP\7zip\Compress\PpmdEncoder.cpp" />
     <ClCompile Include="CPP\7zip\Compress\PpmdRegister.cpp" />
+    <ClCompile Include="CPP\7zip\UI\Client7z\Client7z.cpp" />
     <ClCompile Include="CPP\7zip\UI\Common\ArchiveCommandLine.cpp" />
-    <ClCompile Include="CPP\7zip\UI\Common\ArchiveExtractCallback.cpp" />
     <ClCompile Include="CPP\7zip\UI\Common\ArchiveName.cpp" />
     <ClCompile Include="CPP\7zip\UI\Common\ArchiveOpenCallback.cpp" />
     <ClCompile Include="CPP\7zip\UI\Common\Bench.cpp" />
@@ -235,7 +232,6 @@
     <ClCompile Include="CPP\7zip\UI\Common\EnumDirItems.cpp" />
     <ClCompile Include="CPP\7zip\UI\Common\Extract.cpp" />
     <ClCompile Include="CPP\7zip\UI\Common\ExtractingFilePath.cpp" />
-    <ClCompile Include="CPP\7zip\UI\Common\LoadCodecs.cpp" />
     <ClCompile Include="CPP\7zip\UI\Common\OpenArchive.cpp" />
     <ClCompile Include="CPP\7zip\UI\Common\PropIDUtils.cpp" />
     <ClCompile Include="CPP\7zip\UI\Common\SetProperties.cpp" />
@@ -243,7 +239,6 @@
     <ClCompile Include="CPP\7zip\UI\Common\TempFiles.cpp" />
     <ClCompile Include="CPP\7zip\UI\Common\Update.cpp" />
     <ClCompile Include="CPP\7zip\UI\Common\UpdateAction.cpp" />
-    <ClCompile Include="CPP\7zip\UI\Common\UpdateCallback.cpp" />
     <ClCompile Include="CPP\7zip\UI\Common\UpdatePair.cpp" />
     <ClCompile Include="CPP\7zip\UI\Common\UpdateProduce.cpp" />
     <ClCompile Include="CPP\7zip\UI\Common\WorkDir.cpp" />
@@ -276,10 +271,6 @@
     <ClCompile Include="CPP\Windows\Synchronization.cpp" />
     <ClCompile Include="CPP\Windows\System.cpp" />
     <ClCompile Include="CPP\Windows\Time.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="CPP\7zip\Archive\Archive.def" />
-    <None Include="CPP\7zip\Archive\Archive2.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{AE15F36C-32BD-4A61-8B97-A4EE1C229DC2}</ProjectGuid>

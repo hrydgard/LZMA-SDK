@@ -255,9 +255,6 @@
     <ClInclude Include="CPP\7zip\UI\Common\IFileExtractCallback.h">
       <Filter>CPP\7zip\UI\Common</Filter>
     </ClInclude>
-    <ClInclude Include="CPP\7zip\UI\Common\LoadCodecs.h">
-      <Filter>CPP\7zip\UI\Common</Filter>
-    </ClInclude>
     <ClInclude Include="CPP\7zip\UI\Common\OpenArchive.h">
       <Filter>CPP\7zip\UI\Common</Filter>
     </ClInclude>
@@ -285,9 +282,6 @@
     <ClInclude Include="CPP\7zip\UI\Common\UpdateAction.h">
       <Filter>CPP\7zip\UI\Common</Filter>
     </ClInclude>
-    <ClInclude Include="CPP\7zip\UI\Common\UpdateCallback.h">
-      <Filter>CPP\7zip\UI\Common</Filter>
-    </ClInclude>
     <ClInclude Include="CPP\7zip\UI\Common\UpdatePair.h">
       <Filter>CPP\7zip\UI\Common</Filter>
     </ClInclude>
@@ -301,9 +295,6 @@
       <Filter>CPP\7zip\UI\Common</Filter>
     </ClInclude>
     <ClInclude Include="CPP\7zip\UI\Common\ArchiveCommandLine.h">
-      <Filter>CPP\7zip\UI\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="CPP\7zip\UI\Common\ArchiveExtractCallback.h">
       <Filter>CPP\7zip\UI\Common</Filter>
     </ClInclude>
     <ClInclude Include="CPP\7zip\UI\Common\ArchiveName.h">
@@ -444,6 +435,9 @@
     <ClInclude Include="CPP\Common\C_FileIO.h">
       <Filter>CPP\Common</Filter>
     </ClInclude>
+    <ClInclude Include="CPP\7zip\UI\Client7z\Client7z.h">
+      <Filter>CPP\7zip\UI\Client7z</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPP\7zip\Archive\7z\7zExtract.cpp">
@@ -525,9 +519,6 @@
       <Filter>CPP\7zip\Archive\Common</Filter>
     </ClCompile>
     <ClCompile Include="CPP\7zip\Archive\ArchiveExports.cpp">
-      <Filter>CPP\7zip\Archive</Filter>
-    </ClCompile>
-    <ClCompile Include="CPP\7zip\Archive\DllExports2.cpp">
       <Filter>CPP\7zip\Archive</Filter>
     </ClCompile>
     <ClCompile Include="CPP\7zip\Archive\LzmaHandler.cpp">
@@ -671,9 +662,6 @@
     <ClCompile Include="CPP\7zip\UI\Common\ExtractingFilePath.cpp">
       <Filter>CPP\7zip\UI\Common</Filter>
     </ClCompile>
-    <ClCompile Include="CPP\7zip\UI\Common\LoadCodecs.cpp">
-      <Filter>CPP\7zip\UI\Common</Filter>
-    </ClCompile>
     <ClCompile Include="CPP\7zip\UI\Common\OpenArchive.cpp">
       <Filter>CPP\7zip\UI\Common</Filter>
     </ClCompile>
@@ -695,9 +683,6 @@
     <ClCompile Include="CPP\7zip\UI\Common\UpdateAction.cpp">
       <Filter>CPP\7zip\UI\Common</Filter>
     </ClCompile>
-    <ClCompile Include="CPP\7zip\UI\Common\UpdateCallback.cpp">
-      <Filter>CPP\7zip\UI\Common</Filter>
-    </ClCompile>
     <ClCompile Include="CPP\7zip\UI\Common\UpdatePair.cpp">
       <Filter>CPP\7zip\UI\Common</Filter>
     </ClCompile>
@@ -708,9 +693,6 @@
       <Filter>CPP\7zip\UI\Common</Filter>
     </ClCompile>
     <ClCompile Include="CPP\7zip\UI\Common\ArchiveCommandLine.cpp">
-      <Filter>CPP\7zip\UI\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="CPP\7zip\UI\Common\ArchiveExtractCallback.cpp">
       <Filter>CPP\7zip\UI\Common</Filter>
     </ClCompile>
     <ClCompile Include="CPP\7zip\UI\Common\ArchiveName.cpp">
@@ -806,13 +788,8 @@
     <ClCompile Include="CPP\Common\C_FileIO.cpp">
       <Filter>CPP\Common</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="CPP\7zip\Archive\Archive.def">
-      <Filter>CPP\7zip\Archive</Filter>
-    </None>
-    <None Include="CPP\7zip\Archive\Archive2.def">
-      <Filter>CPP\7zip\Archive</Filter>
-    </None>
+    <ClCompile Include="CPP\7zip\UI\Client7z\Client7z.cpp">
+      <Filter>CPP\7zip\UI\Client7z</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

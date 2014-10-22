@@ -18,8 +18,11 @@
 
 #include "../../Archive/IArchive.h"
 
+#include "../../ICoder.h"
 #include "../../IPassword.h"
 #include "../../MyVersion.h"
+
+#include "Client7z.h"
 
 #ifdef _WIN32
 HINSTANCE g_hInstance = 0;
@@ -668,7 +671,22 @@ STDMETHODIMP CArchiveUpdateCallback::CryptoGetTextPassword2(Int32 *passwordIsDef
 
 #define NT_CHECK_FAIL_ACTION PrintError("Unsupported Windows version"); return 1;
 
-int MY_CDECL main(int numArgs, const char *args[])
+STDAPI CreateCoder(const GUID *clsid, const GUID *iid, void **outObject);
+STDAPI CreateArchiver(const GUID *classID, const GUID *iid, void **outObject);
+
+HRESULT CreateObject(const GUID *clsid, const GUID *iid, void **outObject)
+{
+	// COM_TRY_BEGIN
+	*outObject = 0;
+	if (*iid == IID_ICompressCoder || *iid == IID_ICompressCoder2 || *iid == IID_ICompressFilter) {
+		return CreateCoder(clsid, iid, outObject);
+	} else {
+		return CreateArchiver(clsid, iid, outObject);
+	}
+	// COM_TRY_END
+}
+
+int MY_CDECL Main7zip(int numArgs, const char *args[])
 {
   NT_CHECK
 
@@ -679,18 +697,8 @@ int MY_CDECL main(int numArgs, const char *args[])
     PrintStringLn(kHelpString);
     return 1;
   }
-  NDLL::CLibrary lib;
-  if (!lib.Load(NDLL::GetModuleDirPrefix() + FTEXT(kDllName)))
-  {
-    PrintError("Can not load 7-zip library");
-    return 1;
-  }
-  CreateObjectFunc createObjectFunc = (CreateObjectFunc)lib.GetProc("CreateObject");
-  if (createObjectFunc == 0)
-  {
-    PrintError("Can not get CreateObject");
-    return 1;
-  }
+
+	CreateObjectFunc createObjectFunc = (CreateObjectFunc)(&CreateObject);
 
   char c;
   {
@@ -886,4 +894,20 @@ int MY_CDECL main(int numArgs, const char *args[])
     }
   }
   return 0;
+}
+
+void Extract7Zip(const char *archivePath, const char *destFolder, ProgressCallback callback, void *userdata) {
+	const char *argv[10];
+	argv[0] = "7zip";
+	argv[1] = "X";
+	argv[2] = archivePath;
+	Main7zip(3, argv);
+}
+
+void List7Zip(const char *archivePath) {
+	const char *argv[10];
+	argv[0] = "7zip";
+	argv[1] = "L";
+	argv[2] = archivePath;
+	Main7zip(3, argv);
 }
