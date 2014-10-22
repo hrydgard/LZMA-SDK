@@ -9,5 +9,5 @@
 
 typedef void (*ProgressCallback)(int64_t bytes, int64_t of, void *userdata);
 
-void Extract7Zip(const char *archivePath, const char *destFolder, ProgressCallback callback, void *userdata);
-void List7Zip(const char *archivePath);
+bool Extract7Zip(const char *archivePath, const char *destFolder, ProgressCallback callback, void *userdata);
+bool List7Zip(const char *archivePath);

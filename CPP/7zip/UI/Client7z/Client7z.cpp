@@ -227,6 +227,9 @@ public:
   UInt64 NumErrors;
   bool PasswordIsDefined;
   UString Password;
+	ProgressCallback Callback;
+	void *Userdata;
+	UInt64 total;
 
   CArchiveExtractCallback() : PasswordIsDefined(false) {}
 };
@@ -239,13 +242,17 @@ void CArchiveExtractCallback::Init(IInArchive *archiveHandler, const FString &di
   NFile::NName::NormalizeDirPathPrefix(_directoryPath);
 }
 
-STDMETHODIMP CArchiveExtractCallback::SetTotal(UInt64 /* size */)
+STDMETHODIMP CArchiveExtractCallback::SetTotal(UInt64 sz)
 {
+	total = sz;
   return S_OK;
 }
 
-STDMETHODIMP CArchiveExtractCallback::SetCompleted(const UInt64 * /* completeValue */)
+STDMETHODIMP CArchiveExtractCallback::SetCompleted(const UInt64 *completeValue)
 {
+	if (Callback && completeValue) {
+		Callback(*completeValue, total, Userdata);
+	}
   return S_OK;
 }
 
@@ -687,136 +694,20 @@ HRESULT CreateObject(const GUID *clsid, const GUID *iid, void **outObject)
 	// COM_TRY_END
 }
 
-int MY_CDECL Main7zip(int numArgs, const char *args[])
+int MY_CDECL Main7zip(char command, const char *archiveFile, ProgressCallback callback, void *userdata)
 {
 	NT_CHECK;
 
 	RegisterClasses();
 
-  PrintStringLn(kCopyrightString);
-
-  if (numArgs < 3)
-  {
-    PrintStringLn(kHelpString);
-    return 1;
-  }
-
 	CreateObjectFunc createObjectFunc = (CreateObjectFunc)(&CreateObject);
 
-  char c;
+  FString archiveName = CmdStringToFString(archiveFile);
   {
-    AString command = args[1];
-    if (command.Length() != 1)
-    {
-      PrintError("incorrect command");
-      return 1;
-    }
-    c = (char)MyCharUpper(command[0]);
-  }
-  FString archiveName = CmdStringToFString(args[2]);
-  if (c == 'A')
-  {
-    // create archive command
-    if (numArgs < 4)
-    {
-      PrintStringLn(kHelpString);
-      return 1;
-    }
-    CObjectVector<CDirItem> dirItems;
-    int i;
-    for (i = 3; i < numArgs; i++)
-    {
-      CDirItem di;
-      FString name = CmdStringToFString(args[i]);
-      
-      NFile::NFind::CFileInfo fi;
-      if (!fi.Find(name))
-      {
-        PrintError("Can't find file", name);
-        return 1;
-      }
-
-      di.Attrib = fi.Attrib;
-      di.Size = fi.Size;
-      di.CTime = fi.CTime;
-      di.ATime = fi.ATime;
-      di.MTime = fi.MTime;
-      di.Name = fs2us(name);
-      di.FullPath = name;
-      dirItems.Add(di);
-    }
-    COutFileStream *outFileStreamSpec = new COutFileStream;
-    CMyComPtr<IOutStream> outFileStream = outFileStreamSpec;
-    if (!outFileStreamSpec->Create(archiveName, false))
-    {
-      PrintError("can't create archive file");
-      return 1;
-    }
-
-    CMyComPtr<IOutArchive> outArchive;
-    if (createObjectFunc(&CLSID_CFormat7z, &IID_IOutArchive, (void **)&outArchive) != S_OK)
-    {
-      PrintError("Can not get class object");
-      return 1;
-    }
-
-    CArchiveUpdateCallback *updateCallbackSpec = new CArchiveUpdateCallback;
-    CMyComPtr<IArchiveUpdateCallback2> updateCallback(updateCallbackSpec);
-    updateCallbackSpec->Init(&dirItems);
-    // updateCallbackSpec->PasswordIsDefined = true;
-    // updateCallbackSpec->Password = L"1";
-
-    /*
-    {
-      const wchar_t *names[] =
-      {
-        L"s",
-        L"x"
-      };
-      const int kNumProps = sizeof(names) / sizeof(names[0]);
-      NCOM::CPropVariant values[kNumProps] =
-      {
-        false,    // solid mode OFF
-        (UInt32)9 // compression level = 9 - ultra
-      };
-      CMyComPtr<ISetProperties> setProperties;
-      outArchive->QueryInterface(IID_ISetProperties, (void **)&setProperties);
-      if (!setProperties)
-      {
-        PrintError("ISetProperties unsupported");
-        return 1;
-      }
-      RINOK(setProperties->SetProperties(names, values, kNumProps));
-    }
-    */
-    
-    HRESULT result = outArchive->UpdateItems(outFileStream, dirItems.Size(), updateCallback);
-    updateCallbackSpec->Finilize();
-    if (result != S_OK)
-    {
-      PrintError("Update Error");
-      return 1;
-    }
-    for (i = 0; i < updateCallbackSpec->FailedFiles.Size(); i++)
-    {
-      PrintNewLine();
-      PrintError("Error for file", updateCallbackSpec->FailedFiles[i]);
-    }
-    if (updateCallbackSpec->FailedFiles.Size() != 0)
-      return 1;
-  }
-  else
-  {
-    if (numArgs != 3)
-    {
-      PrintStringLn(kHelpString);
-      return 1;
-    }
-
     bool listCommand;
-    if (c == 'L')
+    if (command == 'L')
       listCommand = true;
-    else if (c == 'X')
+    else if (command == 'X')
       listCommand = false;
     else
     {
@@ -886,6 +777,8 @@ int MY_CDECL Main7zip(int numArgs, const char *args[])
       CMyComPtr<IArchiveExtractCallback> extractCallback(extractCallbackSpec);
       extractCallbackSpec->Init(archive, FTEXT("")); // second parameter is output folder path
       extractCallbackSpec->PasswordIsDefined = false;
+			extractCallbackSpec->Userdata = userdata;
+			extractCallbackSpec->Callback = callback;
       // extractCallbackSpec->PasswordIsDefined = true;
       // extractCallbackSpec->Password = L"1";
       HRESULT result = archive->Extract(NULL, (UInt32)(Int32)(-1), false, extractCallback);
@@ -899,18 +792,10 @@ int MY_CDECL Main7zip(int numArgs, const char *args[])
   return 0;
 }
 
-void Extract7Zip(const char *archivePath, const char *destFolder, ProgressCallback callback, void *userdata) {
-	const char *argv[10];
-	argv[0] = "7zip";
-	argv[1] = "X";
-	argv[2] = archivePath;
-	Main7zip(3, argv);
+bool Extract7Zip(const char *archivePath, const char *destFolder, ProgressCallback callback, void *userdata) {
+	return Main7zip('X', archivePath, callback, userdata) != 0;
 }
 
-void List7Zip(const char *archivePath) {
-	const char *argv[10];
-	argv[0] = "7zip";
-	argv[1] = "L";
-	argv[2] = archivePath;
-	Main7zip(3, argv);
+bool List7Zip(const char *archivePath) {
+	return Main7zip('L', archivePath, NULL, NULL) != 0;
 }
