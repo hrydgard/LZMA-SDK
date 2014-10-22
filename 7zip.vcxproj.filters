@@ -37,6 +37,9 @@
     <Filter Include="CPP\7zip\UI\Common">
       <UniqueIdentifier>{2e7e06ae-8b18-4e51-98e9-837a703acfdf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="C">
+      <UniqueIdentifier>{bcc7da43-a230-4284-a1d7-849d516a4741}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CPP\7zip\Archive\7z\7zEncode.h">
@@ -438,6 +441,99 @@
     <ClInclude Include="CPP\7zip\UI\Client7z\Client7z.h">
       <Filter>CPP\7zip\UI\Client7z</Filter>
     </ClInclude>
+    <ClInclude Include="C\Alloc.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="CPP\7zip\UI\Client7z\RegisterClasses.h">
+      <Filter>CPP\7zip\UI\Client7z</Filter>
+    </ClInclude>
+    <ClInclude Include="C\7zCrc.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\Threads.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\CpuArch.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\Lzma2Dec.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\Lzma2Enc.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\Lzma86.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\LzmaDec.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\LzmaEnc.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\LzmaLib.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\MtCoder.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\Ppmd.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\Ppmd7.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\RotateDefs.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\7z.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\7zAlloc.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\7zBuf.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\7zFile.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\7zVersion.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\Bcj2.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\Bra.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\Delta.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\LzFind.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\LzFindMt.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\LzHash.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\Sha256.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\Types.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\Xz.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\XzCrc64.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="C\XzEnc.h">
+      <Filter>C</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPP\7zip\Archive\7z\7zExtract.cpp">
@@ -790,6 +886,120 @@
     </ClCompile>
     <ClCompile Include="CPP\7zip\UI\Client7z\Client7z.cpp">
       <Filter>CPP\7zip\UI\Client7z</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Alloc.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="CPP\7zip\Archive\DllExports2.cpp">
+      <Filter>CPP\7zip\Archive</Filter>
+    </ClCompile>
+    <ClCompile Include="CPP\7zip\UI\Client7z\RegisterClasses.cpp">
+      <Filter>CPP\7zip\UI\Client7z</Filter>
+    </ClCompile>
+    <ClCompile Include="C\7zCrc.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\7zCrcOpt.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Threads.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\CpuArch.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Lzma2Dec.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Lzma2Enc.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Lzma86Dec.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Lzma86Enc.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\LzmaDec.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\LzmaEnc.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\LzmaLib.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\MtCoder.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Ppmd7.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Ppmd7Dec.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Ppmd7Enc.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\7zAlloc.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\7zBuf.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\7zBuf2.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\7zDec.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\7zFile.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\7zStream.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Bcj2.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Bra.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Bra86.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\BraIA64.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Delta.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\LzFind.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\LzFindMt.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Sha256.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\Xz.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\XzCrc64.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\XzDec.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\XzEnc.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\XzIn.c">
+      <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="C\7zInC.c">
+      <Filter>C</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

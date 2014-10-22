@@ -12,3 +12,5 @@ static CCodecInfo g_CodecInfo =
 { CreateCodec, CreateCodec, 0x00, L"Copy", 1, false };
 
 REGISTER_CODEC(Copy)
+
+void RegisterCodecCopy() {}

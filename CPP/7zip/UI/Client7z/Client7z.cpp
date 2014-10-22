@@ -23,9 +23,10 @@
 #include "../../MyVersion.h"
 
 #include "Client7z.h"
+#include "RegisterClasses.h"
 
 #ifdef _WIN32
-HINSTANCE g_hInstance = 0;
+HINSTANCE g_hInstanceLocal = 0;
 #endif
 
 // use another CLSIDs, if you want to support other formats (zip, rar, ...).
@@ -688,7 +689,9 @@ HRESULT CreateObject(const GUID *clsid, const GUID *iid, void **outObject)
 
 int MY_CDECL Main7zip(int numArgs, const char *args[])
 {
-  NT_CHECK
+	NT_CHECK;
+
+	RegisterClasses();
 
   PrintStringLn(kCopyrightString);
 

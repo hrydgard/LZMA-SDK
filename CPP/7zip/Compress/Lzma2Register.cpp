@@ -18,3 +18,5 @@ static CCodecInfo g_CodecInfo =
   { CreateCodec, CreateCodecOut, 0x21, L"LZMA2", 1, false };
 
 REGISTER_CODEC(LZMA2)
+
+void RegisterCodecLzma2() {}

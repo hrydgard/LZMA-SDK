@@ -17,3 +17,5 @@ static CCodecInfo g_CodecInfo =
   { CreateCodec, CreateCodecOut, 0x03030103, L"BCJ", 1, true };
 
 REGISTER_CODEC(BCJ)
+
+void RegisterCodecBcj() {}

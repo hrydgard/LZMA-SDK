@@ -16,3 +16,5 @@ static CArcInfo g_ArcInfo =
   { L"7z", L"7z", 0, 7, {'7', 'z', 0xBC, 0xAF, 0x27, 0x1C}, 6, false, CreateArc, CreateArcOut };
 
 REGISTER_ARC(7z)
+
+void Register7z() {}

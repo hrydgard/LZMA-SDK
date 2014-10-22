@@ -19,3 +19,5 @@ static CCodecInfo g_CodecInfo =
   { CreateCodec, CreateCodecOut, 0x030401, L"PPMD", 1, false };
 
 REGISTER_CODEC(PPMD)
+
+void RegisterCodecPpmd() {}
